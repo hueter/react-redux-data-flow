@@ -1,13 +1,17 @@
-import { getRandomColor } from '../../helpers';
+import { getRandomColor, logStuff } from '../../helpers';
 
 export const CHANGE_COLOR = 'CHANGE_COLOR';
 
 export function changeColor() {
   const randomColor = getRandomColor();
-  console.log(
-    '*** ACTION CREATOR *** Dispatching CHANGE_COLOR action to the reducer...'
+  logStuff(
+    'Action Creator Invoked',
+    '#c62828',
+    ['Action', { type: CHANGE_COLOR, payload: randomColor }],
+    true
   );
-  debugger;
+  // debugger;
+
   return {
     type: CHANGE_COLOR,
     payload: randomColor

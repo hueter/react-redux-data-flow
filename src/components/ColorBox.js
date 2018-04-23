@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
-import './ColorBox.css';
 import PropTypes from 'prop-types';
+import './ColorBox.css';
+import { logStuff } from '../helpers';
 
 class ColorBox extends Component {
+  componentDidMount() {
+    logStuff('Component Mounted', '#EF6C00', ['props', this.props]);
+  }
+  componentDidUpdate(prevProps) {
+    logStuff('Component Updated', '#EF6C00', [
+      'Previous Props',
+      prevProps,
+      'Current Props',
+      this.props
+    ]);
+  }
   render() {
     return (
       <div>
@@ -15,24 +27,17 @@ class ColorBox extends Component {
         <button id="colorChanger" onClick={this.props.changeColor}>
           Change Colors!
         </button>
-        <button id="logButton" onClick={this.props.changeLoggingType}>
-          {this.props.loggingType}
-        </button>
       </div>
     );
   }
 }
 
 ColorBox.defaultProps = {
-  loggingType: 'Debugger Mode',
-  changeLoggingType: () => alert('Mode Button clicked but nothing happened'),
   changeColor: () => alert('Color Button clicked but nothing happened'),
   randomColor: 'black'
 };
 
 ColorBox.propTypes = {
-  loggingType: PropTypes.string.isRequired,
-  changeLoggingType: PropTypes.func.isRequired,
   changeColor: PropTypes.func.isRequired,
   randomColor: PropTypes.string.isRequired
 };

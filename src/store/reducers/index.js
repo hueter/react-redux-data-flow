@@ -1,3 +1,4 @@
+import { logStuff } from '../../helpers';
 import { CHANGE_COLOR } from '../actions';
 
 const DEFUALT_STATE = {
@@ -5,8 +6,14 @@ const DEFUALT_STATE = {
 };
 
 function rootReducer(state = DEFUALT_STATE, action) {
-  console.log('*** REDUCER *** Reducer is calculating a new state...');
-  debugger;
+  logStuff('Reducer Invoked', '#6A1B9A', [
+    'Current State',
+    state,
+    'Action',
+    action
+  ]);
+  // debugger;
+
   switch (action.type) {
     case CHANGE_COLOR:
       return { ...state, randomColor: action.payload };

@@ -1,17 +1,21 @@
 import { changeColor } from '../store/actions';
+import { logStuff } from '../helpers';
 import { connect } from 'react-redux';
 import ColorBox from '../components/ColorBox';
 
 function mapStateToProps(state) {
-  debugger;
-  console.log('*** CONTAINER *** Mapping Redux State to React Props...');
+  logStuff('Map State to Props Invoked', '#1565C0', ['Redux State', state]);
+  // debugger;
+
   return {
     randomColor: state.randomColor
   };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
-  console.log('*** CONTAINER *** Mapping Dispatch (Actions) to React Props...');
+  logStuff('Map Dispatch to Props Invoked', '#37474F');
+  // debugger;
+
   return {
     changeColor: () => dispatch(changeColor())
   };
