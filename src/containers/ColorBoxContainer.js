@@ -8,18 +8,18 @@ import ColorBox from '../components/ColorBox';
  *  will update itself (re-render) based on a shallow equality comparison.
  *
  * For more information: https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options
- * @param {Object} state - Redux State from the store
+ * @param {Object} reduxState - Redux State from the store
  * @param {Object} ownProps - props passed to the connected component
  */
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(reduxState, ownProps) {
   logStuff('Container Mapped Redux State to Component Props', '#37474F', [
     'Redux State',
-    state
+    reduxState
   ]);
   // debugger;
 
   return {
-    randomColor: state.randomColor
+    color: reduxState.color
   };
 }
 

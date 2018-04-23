@@ -39,7 +39,7 @@ class ColorBox extends Component {
         <div
           id="colorBox"
           style={{
-            backgroundColor: this.props.randomColor // box color is assigned dynamically as a prop
+            backgroundColor: this.props.color // box color is assigned dynamically as a prop
           }}
         />
         <button id="colorChanger" onClick={this.props.changeColor}>
@@ -59,7 +59,7 @@ class ColorBox extends Component {
  */
 ColorBox.defaultProps = {
   changeColor: () => alert('Color Button clicked but nothing happened'),
-  randomColor: 'black'
+  color: 'black'
 };
 
 /**
@@ -68,7 +68,7 @@ ColorBox.defaultProps = {
  */
 ColorBox.propTypes = {
   changeColor: PropTypes.func.isRequired,
-  randomColor: PropTypes.string.isRequired
+  color: PropTypes.string.isRequired
 };
 
 /**

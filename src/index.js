@@ -5,8 +5,10 @@ import configureStore from './store/configure';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 
+// build the store and apply any middleware
 const store = configureStore();
 
+// Render the app with Redux enabled
 ReactDOM.render(
   <Provider store={store}>
     <App />

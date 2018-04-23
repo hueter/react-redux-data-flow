@@ -8,7 +8,7 @@ import { CHANGE_COLOR } from '../actions';
  *  the inherent flexibility and so that we can add new keys whenever we want.
  */
 const DEFUALT_STATE = {
-  randomColor: 'gray'
+  color: 'gray'
 };
 
 /**
@@ -41,7 +41,7 @@ function rootReducer(state = DEFUALT_STATE, action) {
        when spreading an object, always apply the updated keys after the original ...state
         so the old values get overwritten by the new values
       */
-      return { ...state, randomColor: action.payload };
+      return { ...state, color: action.payload };
     default:
       return { ...state };
   }
