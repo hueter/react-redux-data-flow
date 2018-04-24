@@ -39,11 +39,20 @@ class ColorBox extends Component {
         <div
           id="colorBox"
           style={{
-            backgroundColor: this.props.color // box color is assigned dynamically as a prop
+            backgroundColor: this.props.color // box color is assigned dynamically as a prop,
           }}
-        />
+        >
+          <img
+            src={this.props.imageURL}
+            alt="Random gif"
+            style={{ width: '300px', padding: '150px 100px' }}
+          />
+        </div>
         <button id="colorChanger" onClick={this.props.changeColor}>
           Change Colors!
+        </button>
+        <button id="colorChanger" onClick={this.props.changeGif}>
+          Change Gifs!
         </button>
       </div>
     );
@@ -59,7 +68,9 @@ class ColorBox extends Component {
  */
 ColorBox.defaultProps = {
   changeColor: () => alert('Color Button clicked but nothing happened'),
-  color: 'black'
+  changeGif: () => alert('Gif Button clicked but nothing happened'),
+  color: 'black',
+  imageURL: ''
 };
 
 /**
@@ -68,7 +79,9 @@ ColorBox.defaultProps = {
  */
 ColorBox.propTypes = {
   changeColor: PropTypes.func.isRequired,
-  color: PropTypes.string.isRequired
+  changeGif: PropTypes.func.isRequired,
+  color: PropTypes.string.isRequired,
+  imageURL: PropTypes.string
 };
 
 /**

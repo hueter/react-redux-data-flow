@@ -1,5 +1,10 @@
 import { logStuff } from '../../helpers';
-import { CHANGE_COLOR } from '../actions';
+import {
+  CHANGE_COLOR,
+  FETCH_RANDOM_GIF_REQUEST,
+  FETCH_RANDOM_GIF_SUCCESS,
+  FETCH_RANDOM_GIF_FAIL
+} from '../actions';
 
 /**
  * The default argument to the reducer that will be used on
@@ -8,7 +13,8 @@ import { CHANGE_COLOR } from '../actions';
  *  the inherent flexibility and so that we can add new keys whenever we want.
  */
 const DEFUALT_STATE = {
-  color: 'gray'
+  color: 'gray',
+  imageURL: 'https://media.giphy.com/media/2vogqNpFQywWC0z0j5/giphy.gif'
 };
 
 /**
@@ -42,6 +48,11 @@ function rootReducer(state = DEFUALT_STATE, action) {
         so the old values get overwritten by the new values
       */
       return { ...state, color: action.payload };
+    case FETCH_RANDOM_GIF_SUCCESS:
+      return { ...state, imageURL: action.payload };
+    // TODO implement handling for these
+    case FETCH_RANDOM_GIF_REQUEST:
+    case FETCH_RANDOM_GIF_FAIL:
     default:
       return { ...state };
   }

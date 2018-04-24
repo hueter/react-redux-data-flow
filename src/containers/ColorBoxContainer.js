@@ -1,4 +1,4 @@
-import { changeColor } from '../store/actions';
+import { changeColor, fetchRandomGifRequest } from '../store/actions';
 import { logStuff } from '../helpers';
 import { connect } from 'react-redux';
 import ColorBox from '../components/ColorBox';
@@ -19,7 +19,8 @@ function mapStateToProps(reduxState, ownProps) {
   // debugger;
 
   return {
-    color: reduxState.color
+    color: reduxState.color,
+    imageURL: reduxState.imageURL
   };
 }
 
@@ -47,7 +48,8 @@ function mapDispatchToProps(dispatch, ownProps) {
        You may use the built-in redux helper: bindActionCreators()
         https://redux.js.org/api-reference/bindactioncreators
     */
-    changeColor: () => dispatch(changeColor())
+    changeColor: () => dispatch(changeColor()),
+    changeGif: () => dispatch(fetchRandomGifRequest())
   };
 }
 

@@ -1,5 +1,5 @@
 import { getRandomColor, logStuff } from '../../helpers';
-
+import { fetchRandomGif } from '../../services/api';
 /**
  * constant variables like this are designed to guard
  *  against typos. You will get a ReferenceError or ImportError instead of a
@@ -10,6 +10,10 @@ import { getRandomColor, logStuff } from '../../helpers';
  *  declares every possible action to be used by the action creators or reducer.
  */
 export const CHANGE_COLOR = 'CHANGE_COLOR';
+
+export const FETCH_RANDOM_GIF_REQUEST = 'FETCH_RANDOM_GIF_REQUEST';
+export const FETCH_RANDOM_GIF_SUCCESS = 'FETCH_RANDOM_GIF_SUCCESS';
+export const FETCH_RANDOM_GIF_FAIL = 'FETCH_RANDOM_GIF_FAIL';
 
 export function changeColor() {
   /**
@@ -40,5 +44,52 @@ export function changeColor() {
   return {
     type: CHANGE_COLOR,
     payload: randomColor
+  };
+}
+
+/**
+ * A thunk!
+ *  This action creator responds with an async function
+ *  which makes an API request and dispatches another
+ *  action by calling the success or fail action creators.
+ */
+export function fetchRandomGifRequest() {
+  logStuff(
+    'THUNK Dispatched',
+    '#c62828',
+    ['Action', { type: FETCH_RANDOM_GIF_REQUEST }],
+    true
+  );
+  // debugger;
+
+  // this is the thunk part
+  return async dispatch => {
+    // let's send an action to describe what we're doing
+    dispatch({ type: FETCH_RANDOM_GIF_REQUEST });
+    try {
+      // make an async API call
+      const newGif = await fetchRandomGif();
+      // dispatch a success action with payload from the API call
+      dispatch(fetchRandomGifSuccess(newGif));
+    } catch (err) {
+      // dispatch a failure action with error from the call
+      dispatch(fetchRandomGifFail(err));
+      // have to manually reject in an async function
+      return Promise.reject();
+    }
+  };
+}
+
+function fetchRandomGifSuccess(gif) {
+  return {
+    type: FETCH_RANDOM_GIF_SUCCESS,
+    payload: gif
+  };
+}
+
+function fetchRandomGifFail(err) {
+  return {
+    type: FETCH_RANDOM_GIF_FAIL,
+    payload: err
   };
 }
